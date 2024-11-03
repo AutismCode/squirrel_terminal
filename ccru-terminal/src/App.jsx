@@ -2,26 +2,28 @@ import React from 'react';
 import SquirrelTerminal from './components/SquirrelTerminal';
 import MatrixRain from './components/MatrixRain';
 
-// Environment variables configuration
 const env = {
-  API_URL: process.env.REACT_APP_API_URL || 'http://localhost:3000/api',
-  API_KEY: process.env.REACT_APP_API_KEY || 'retardednigga'
+  API_URL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  API_KEY: import.meta.env.VITE_API_KEY || ''
 };
 
-// Export environment configuration for use in other components
 export const getEnvironment = () => env;
-
 function App() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0a0a0a] to-[#1a0f1f] relative overflow-hidden">
-      {/* Matrix Rain Animation */}
-      <MatrixRain />
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Base background */}
+      <div className="fixed inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#1a0f1f]" />
       
-      {/* Animated scan line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent animate-scan" />
+      {/* Matrix Animation Layer */}
+      <div className="fixed inset-0 z-0">
+        <MatrixRain />
+      </div>
       
-      <SquirrelTerminal apiUrl={env.API_URL} apiKey={env.API_KEY} />
-    </main>
+      {/* Terminal Layer */}
+      <div className="relative z-10">
+        <SquirrelTerminal />
+      </div>
+    </div>
   );
 }
 

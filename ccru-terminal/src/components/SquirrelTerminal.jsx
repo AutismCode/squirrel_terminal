@@ -178,8 +178,8 @@ Reality coherence: UNSTABLE`
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#0a0a0a] to-[#1a0f1f] p-4 font-mono overflow-hidden">
-      {/* Animated background effect */}
+<div className="relative min-h-screen p-4 font-mono overflow-hidden">
+{/* Animated background effect */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent animate-pulse"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-scan"></div>
