@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal, Loader2, WifiOff, Tree, Acorn, Zap, Brain, Skull } from 'lucide-react';
+import { Terminal, Loader2, WifiOff, TreePine as Tree, Brain, Skull, Zap } from 'lucide-react';
 
 const API_URL = 'https://overlord.codes/api';
 const API_KEY = 'test123';
