@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
@@ -7,15 +6,98 @@
 
 :root {
   color-scheme: dark;
+  --scanning-line-height: 2px;
 }
 
+/* Base styles */
 body {
   background-color: #0a0a0a;
   color: #ff0000;
   font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* Cyberpunk animations */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.15deg);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(0.25deg);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: skew(0.5deg);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(0.1deg);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: skew(-0.2deg);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: skew(-0.4deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Custom utility classes */
+.animate-scan {
+  animation: scan 8s linear infinite;
+}
+
+.animate-glitch {
+  animation: glitch 1s infinite linear alternate-reverse;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Terminal specific styles */
+.terminal-text-shadow {
+  text-shadow: 0 0 5px currentColor;
+}
+
+.cyber-border {
+  position: relative;
+  border: 1px solid theme('colors.amber.500' / 50%);
+}
+
+.cyber-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid theme('colors.purple.500' / 30%);
+  pointer-events: none;
+}
+
+/* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -26,10 +108,101 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff000040;
+  background: theme('colors.amber.900' / 40%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff000080;
+  background: theme('colors.amber.800' / 60%);
+}
+
+/* Custom background effects */
+.bg-matrix {
+  background-image: 
+    linear-gradient(0deg, 
+      theme('colors.purple.900' / 5%) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg,
+      theme('colors.purple.900' / 5%) 1px,
+      transparent 1px
+    );
+  background-size: 20px 20px;
+  background-position: center center;
+}
+
+/* Gradient text effect */
+.text-gradient {
+  background: linear-gradient(
+    45deg,
+    theme('colors.amber.400'),
+    theme('colors.purple.400'),
+    theme('colors.amber.400')
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Quantum effect utilities */
+.quantum-blur {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.quantum-glow {
+  box-shadow: 
+    0 0 10px theme('colors.amber.500' / 20%),
+    0 0 20px theme('colors.purple.500' / 10%),
+    inset 0 0 15px theme('colors.amber.500' / 10%);
+}
+
+/* Input field focus styles */
+input:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 1px theme('colors.amber.500' / 30%),
+    0 0 15px theme('colors.purple.500' / 20%);
+}
+
+/* Terminal response animations */
+.response-appear {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: responseAppear 0.3s ease forwards;
+}
+
+@keyframes responseAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error message styling */
+.error-flash {
+  animation: errorFlash 0.5s ease;
+}
+
+@keyframes errorFlash {
+  0%, 100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: theme('colors.red.500' / 20%);
+  }
 }
