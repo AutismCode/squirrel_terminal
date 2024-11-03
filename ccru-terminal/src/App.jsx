@@ -4,7 +4,7 @@ import SquirrelTerminal from './components/SquirrelTerminal';
 // Environment variables configuration
 const env = {
   API_URL: process.env.REACT_APP_API_URL || 'http://localhost:3000/api',
-  API_KEY: process.env.REACT_APP_API_KEY || 'nigga'
+  API_KEY: process.env.REACT_APP_API_KEY || 'lol'
 };
 
 // Export environment configuration for use in other components

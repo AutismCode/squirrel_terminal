@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal, Loader2, WifiOff, TreePine as Tree, Brain, Skull, Zap } from 'lucide-react';
 
-// Replace the hardcoded values with environment variables
-const API_URL = process.env.REACT_APP_API_URL;
-const API_KEY = process.env.REACT_APP_API_KEY || 'nigga';
+const API_URL = import.meta.env.VITE_API_URL;  // Changed for Vite
+const API_KEY = import.meta.env.VITE_API_KEY;  // Changed for Vite
+
 
 const useAutoScroll = (dependency) => {
   const endRef = useRef(null);
