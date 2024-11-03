@@ -36,7 +36,7 @@ const SquirrelTerminal = () => {
 【CYBER-SQUIRREL OS v2.0】
 Initializing bio-digital nuts acorn matrix...
 Loading quantum-nut consciousness harmonics...
-⚡️ NEURAL INTERFACE STATUS ⚡️
+🥜 NEURAL NUT INTERFACE STATUS 🥜
 
 ► Cybernetic tail modules: ONLINE
 ► Quantum Pnut processor: SYNCED
