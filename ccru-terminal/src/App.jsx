@@ -1,7 +1,17 @@
 import React from 'react';
 import SquirrelTerminal from './components/SquirrelTerminal';
 
+// Environment variables configuration
+const env = {
+  API_URL: process.env.REACT_APP_API_URL || 'http://localhost:3000/api',
+  API_KEY: process.env.REACT_APP_API_KEY || 'nigga'
+};
+
+// Export environment configuration for use in other components
+export const getEnvironment = () => env;
+
 function App() {
+  // Pass environment variables to SquirrelTerminal as props
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a0a0a] to-[#1a0f1f] relative overflow-hidden">
       {/* Animated cyber grid background */}
@@ -10,7 +20,7 @@ function App() {
       {/* Animated scan line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent animate-scan" />
       
-      <SquirrelTerminal />
+      <SquirrelTerminal apiUrl={env.API_URL} apiKey={env.API_KEY} />
     </main>
   );
 }

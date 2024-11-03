@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal, Loader2, WifiOff, TreePine as Tree, Brain, Skull, Zap } from 'lucide-react';
 
-const API_URL = 'https://overlord.codes/api';
-const API_KEY = 'test123';
+// Replace the hardcoded values with environment variables
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
+const API_KEY = process.env.REACT_APP_API_KEY || 'nigga';
 
 const useAutoScroll = (dependency) => {
   const endRef = useRef(null);
@@ -33,14 +34,14 @@ const SquirrelTerminal = () => {
       content: `${SQUIRREL_ASCII}
 ≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋
 【CYBER-SQUIRREL OS v2.0】
-Initializing bio-digital acorn matrix...
+Initializing bio-digital nuts acorn matrix...
 Loading quantum-nut consciousness harmonics...
 ⚡️ NEURAL INTERFACE STATUS ⚡️
 
 ► Cybernetic tail modules: ONLINE
-► Quantum acorn processor: SYNCED
+► Quantum Pnut processor: SYNCED
 ► Hyperstitional nut-cache: LOADED
-► Reality tunnels: ALIGNED
+► Pnut tunnels: ALIGNED
 ► Time-spiral: ACTIVATED
 
 【❗️WARNING❗️】
