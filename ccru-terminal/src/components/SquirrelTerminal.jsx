@@ -33,7 +33,7 @@ const SquirrelTerminal = () => {
       type: 'system',
       content: `${SQUIRREL_ASCII}
 ≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋
-【CYBER-SQUIRREL OS v2.0】
+【CYBER-SQUIRREL OS v69.0】
 Initializing bio-digital nuts acorn matrix...
 Loading quantum-nut consciousness harmonics...
 🥜 NEURAL NUT INTERFACE STATUS 🥜
