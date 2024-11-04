@@ -42,7 +42,7 @@ Loading quantum-nut consciousness harmonics...
 ► Quantum Pnut processor: SYNCED
 ► Hyperstitional nut-cache: LOADED
 ► Pnut tunnels: ALIGNED
-► EEeQd66UD9R2EYyactapd6mG946Q6uhc3RwJqxURpump
+► n/a 
 
 【❗️WARNING❗️】
 This terminal operates on experimental 
