@@ -17,7 +17,7 @@ const useAutoScroll = (dependency) => {
 const SQUIRREL_ASCII = `
      /\\   /\\      _≋≋≋≋≋≋≋≋_
     /  \\ /  \\    / ⚡️ω⚡️  \\
-   |    |    |  <|  CCRU  |>
+   |    |    |  <|  NUTS  |>
     \\  /\\  /    \\_______/
      \\/__\\/      |_| |_|
 `;
@@ -45,7 +45,7 @@ Loading quantum-nut consciousness harmonics...
 ► n/a 
 
 【❗️WARNING❗️】
-This terminal operates on experimental 
+This Terminut operates on experimental 
 cyber-rodent protocols. Side effects may 
 include: temporal loops, acorn obsession, 
 and spontaneous reality bifurcation.
