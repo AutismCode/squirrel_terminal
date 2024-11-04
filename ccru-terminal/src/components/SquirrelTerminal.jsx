@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal, Loader2, WifiOff, TreePine as Tree, Brain, Skull, Zap } from 'lucide-react';
+import { Terminal, Loader2, WifiOff, TreePine as Tree, Brain, Skull, Zap, Timer } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL;  // Changed for Vite
-const API_KEY = import.meta.env.VITE_API_KEY;  // Changed for Vite
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
+const RATE_LIMIT_SECONDS = 20; 
 
 const useAutoScroll = (dependency) => {
   const endRef = useRef(null);
@@ -42,6 +43,7 @@ Loading quantum-nut consciousness harmonics...
 ► Quantum Pnut processor: SYNCED
 ► Hyperstitional nut-cache: LOADED
 ► Pnut tunnels: ALIGNED
+► Reality stabilization: 20s cooldown active
 ► H8rRWtvZFbdtWasqupReyM9ueSQxw6FCQBuuAjXSpump 
 
 【❗️WARNING❗️】
@@ -57,9 +59,24 @@ CCRU SQUIRREL-MIND AWAITING INPUT...`
   const [isLoading, setIsLoading] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [connectionAttempts, setConnectionAttempts] = useState(0);
+  const [lastQueryTime, setLastQueryTime] = useState(0);
+  const [cooldownRemaining, setCooldownRemaining] = useState(0);
   const inputRef = useRef(null);
   const scrollRef = useAutoScroll(history);
   const maxRetries = 3;
+
+  // Handle cooldown timer
+  useEffect(() => {
+    if (cooldownRemaining <= 0) return;
+
+    const interval = setInterval(() => {
+      const remaining = Math.max(0, RATE_LIMIT_SECONDS - 
+        Math.floor((Date.now() - lastQueryTime) / 1000));
+      setCooldownRemaining(remaining);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [lastQueryTime, cooldownRemaining]);
 
   // Glitch effect
   useEffect(() => {
@@ -93,6 +110,7 @@ CCRU SQUIRREL-MIND AWAITING INPUT...`
 ║ Location: Cyber-Oak Node #23   ║
 ║ Reality Index: 87.3%           ║
 ║ Quantum-Nut Energy: OPTIMAL    ║
+║ Temporal Cooldown: ${RATE_LIMIT_SECONDS}s      ║
 ╚════════════════════════════════╝
 Ready to process your reality queries...`
           }]);
@@ -130,11 +148,14 @@ Reality coherence: UNSTABLE`
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || cooldownRemaining > 0) return;
 
     const query = input.trim();
     setInput('');
     setNutCount(prev => prev + 1);
+    setLastQueryTime(Date.now());
+    setCooldownRemaining(RATE_LIMIT_SECONDS);
+    
     setHistory(prev => [...prev, { 
       type: 'input', 
       content: query 
@@ -178,8 +199,7 @@ Reality coherence: UNSTABLE`
   };
 
   return (
-<div className="relative min-h-screen p-4 font-mono overflow-hidden">
-{/* Animated background effect */}
+    <div className="relative min-h-screen p-4 font-mono overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent animate-pulse"></div>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent animate-scan"></div>
@@ -191,6 +211,12 @@ Reality coherence: UNSTABLE`
           <span className="text-xs text-amber-400">CCRU//SQUIRREL::QUANTUM_MATRIX {glitchText}</span>
           <div className="ml-auto flex items-center gap-2">
             {isLoading && <Loader2 className="w-4 h-4 animate-spin text-purple-400" />}
+            {cooldownRemaining > 0 && (
+              <span className="text-xs text-amber-400 flex items-center gap-1">
+                <Timer className="w-3 h-3" />
+                {cooldownRemaining}s
+              </span>
+            )}
             <span className={`text-xs flex items-center gap-1 ${isConnected ? 'text-green-400' : 'text-amber-400'}`}>
               {!isConnected && <Skull className="w-3 h-3" />}
               {isConnected ? '【REALITY SYNCED】' : '【QUANTUM BREACH】'}
@@ -241,8 +267,14 @@ Reality coherence: UNSTABLE`
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="flex-1 bg-transparent text-purple-400 outline-none placeholder-amber-700"
-              placeholder={isConnected ? "Query the quantum-nut matrix..." : "Reality link disabled..."}
-              disabled={isLoading || !isConnected}
+              placeholder={
+                cooldownRemaining > 0 
+                  ? `Reality stabilizing... ${cooldownRemaining}s remaining...`
+                  : isConnected 
+                    ? "Query the quantum-nut matrix..." 
+                    : "Reality link disabled..."
+              }
+              disabled={isLoading || !isConnected || cooldownRemaining > 0}
             />
           </div>
         </form>
